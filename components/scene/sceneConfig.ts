@@ -1,5 +1,5 @@
 export const CAMERA_START_Z = -100;
-export const CAMERA_END_Z = 0;
+export const CAMERA_END_Z = 10;
 
 export const SCROLL_DISTANCE_PX = 8000;
 

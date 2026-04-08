@@ -1,26 +1,15 @@
-"use client";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import ClientLayout from "@/components/ClientLayout";
+import type { Gallery as GalleryDoc } from "@/payload-types";
 
-import { ScrollProvider } from "@/components/ScrollProvider";
-import About from "@/components/sections/About";
-import Gallery from "@/components/sections/Gallery";
-import Hero from "@/components/sections/Hero";
-import Projects from "@/components/sections/Projects";
-import SceneCanvas from "@/components/scene/SceneCanvas";
-import { SCROLL_DISTANCE_PX } from "@/components/scene/sceneConfig";
+export default async function HomePage() {
+  const payload = await getPayload({ config });
+  const data = await payload.find({
+    collection: "gallery",
+    sort: "order",
+    depth: 1,
+  });
 
-export default function HomePage() {
-  return (
-    <ScrollProvider>
-      <SceneCanvas />
-      <Hero />
-      <About />
-      <Projects />
-      <Gallery />
-      <div
-        aria-hidden="true"
-        className="relative z-20"
-        style={{ height: `calc(100vh + ${SCROLL_DISTANCE_PX}px)` }}
-      />
-    </ScrollProvider>
-  );
+  return <ClientLayout galleryItems={data.docs as GalleryDoc[]} />;
 }

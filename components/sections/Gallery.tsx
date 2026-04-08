@@ -6,14 +6,29 @@ import { PARALLAX } from "@/components/scene/sceneConfig";
 
 function Gallery() {
   const { entryProgress, exitProgress } = useSectionProgress("gallery");
-  const entryScale = useTransform(entryProgress, [0, 1], [PARALLAX.entryScale, 1]);
+  const entryScale = useTransform(
+    entryProgress,
+    [0, 1],
+    [PARALLAX.entryScale, 1],
+  );
   const exitScale = useTransform(exitProgress, [0, 1], [1, PARALLAX.exitScale]);
-  const scale = useTransform([exitProgress, entryScale, exitScale], (values: number[]) => {
-    const [exitPhase, entry, exit] = values;
-    return exitPhase > 0 ? exit : entry;
-  });
-  const entryOpacity = useTransform(entryProgress, [0, 1], [PARALLAX.entryOpacity, 1]);
-  const exitOpacity = useTransform(exitProgress, [0, 1], [1, PARALLAX.exitOpacity]);
+  const scale = useTransform(
+    [exitProgress, entryScale, exitScale],
+    (values: number[]) => {
+      const [exitPhase, entry, exit] = values;
+      return exitPhase > 0 ? exit : entry;
+    },
+  );
+  const entryOpacity = useTransform(
+    entryProgress,
+    [0, 1],
+    [PARALLAX.entryOpacity, 1],
+  );
+  const exitOpacity = useTransform(
+    exitProgress,
+    [0, 1],
+    [1, PARALLAX.exitOpacity],
+  );
   const opacity = useTransform(
     [exitProgress, entryOpacity, exitOpacity],
     (values: number[]) => {
@@ -34,9 +49,12 @@ function Gallery() {
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-white/50">
           Gallery
         </p>
-        <h2 className="text-4xl font-semibold text-white">Visual Experiments</h2>
+        <h2 className="text-4xl font-semibold text-white">
+          Visual Experiments
+        </h2>
         <p className="mt-3 text-white/70">
-          Placeholder gallery content for stills, motion, and interactive snippets.
+          Placeholder gallery content for stills, motion, and interactive
+          snippets.
         </p>
       </motion.div>
     </section>
