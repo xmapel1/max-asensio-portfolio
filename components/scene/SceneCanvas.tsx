@@ -2,6 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useScrollState } from "@/components/ScrollProvider";
+import DebugCameraZOverlay from "@/components/scene/DebugCameraZOverlay";
 import SceneProps from "@/components/scene/SceneProps";
 import { CAMERA_START_Z } from "@/components/scene/sceneConfig";
 import type { Gallery } from "@/payload-types";
@@ -24,6 +25,8 @@ type SceneCanvasProps = {
 export default function SceneCanvas({ galleryItems }: SceneCanvasProps) {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
+      {/* TODO: remove debug overlay */}
+      <DebugCameraZOverlay />
       <Canvas
         camera={{
           position: [0, 0, CAMERA_START_Z],
@@ -35,7 +38,7 @@ export default function SceneCanvas({ galleryItems }: SceneCanvasProps) {
         dpr={[1, 1.5]}
       >
         <color attach="background" args={["#000000"]} />
-        <fog attach="fog" args={["#000000", 80, 280]} />
+        <fogExp2 attach="fog" args={["#000000", 0.08]} />
         <ambientLight intensity={0.6} />
         <CameraRig />
         <SceneProps galleryItems={galleryItems} />

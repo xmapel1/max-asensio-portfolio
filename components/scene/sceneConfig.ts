@@ -2,6 +2,8 @@ export const CAMERA_START_Z = -100;
 export const CAMERA_END_Z = 10;
 
 export const SCROLL_DISTANCE_PX = 8000;
+export const GALLERY_MESH_ENTRY_OFFSET_Z = 16;
+export const GALLERY_FADE_SWEETSPOT_OFFSET_Z = 2.6;
 
 export const SECTION_Z_RANGES = {
   hero: { start: -100, end: -80 },
