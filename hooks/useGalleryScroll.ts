@@ -9,10 +9,9 @@ import {
   zRangeToProgressRange,
 } from "@/components/scene/sceneConfig";
 
-export const PLANE_COUNT = 6;
 export const PLANE_GAP = 4;
 
-export function useGalleryScroll() {
+export function useGalleryScroll(planeCount: number) {
   const { scrollProgressMv } = useScrollState();
   const [localProgress, setLocalProgress] = useState(0);
   const [cameraZOffset, setCameraZOffset] = useState(0);
@@ -28,14 +27,14 @@ export function useGalleryScroll() {
       (progress - galleryRange.start) / rangeSpan,
     );
     setLocalProgress(nextLocalProgress);
-    setCameraZOffset(nextLocalProgress * (PLANE_COUNT - 1) * PLANE_GAP);
+    setCameraZOffset(nextLocalProgress * Math.max(planeCount - 1, 0) * PLANE_GAP);
   };
 
   useEffect(() => {
     updateFromProgress(scrollProgressMv.get());
     // Only run on mount to seed initial values.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [planeCount]);
 
   useMotionValueEvent(scrollProgressMv, "change", (progress) => {
     updateFromProgress(progress);

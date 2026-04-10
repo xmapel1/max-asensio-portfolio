@@ -38,7 +38,6 @@ export default function SceneCanvas({ galleryItems }: SceneCanvasProps) {
         dpr={[1, 1.5]}
       >
         <color attach="background" args={["#000000"]} />
-        <fogExp2 attach="fog" args={["#000000", 0.08]} />
         <ambientLight intensity={0.6} />
         <CameraRig />
         <SceneProps galleryItems={galleryItems} />

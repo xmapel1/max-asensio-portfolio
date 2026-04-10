@@ -40,7 +40,7 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className="pointer-events-none fixed inset-0 z-10 flex items-center justify-end px-8"
+      className="pointer-events-none fixed inset-0 z-10 flex items-center justify-end pr-[25vw] pl-8"
     >
       <motion.div
         style={{ scale, opacity, willChange: "transform, opacity" }}

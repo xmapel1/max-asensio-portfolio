@@ -15,7 +15,7 @@ type ClientLayoutProps = {
 
 export default function ClientLayout({ galleryItems }: ClientLayoutProps) {
   return (
-    <ScrollProvider>
+    <ScrollProvider galleryPlaneCount={galleryItems.length}>
       <SceneCanvas galleryItems={galleryItems} />
       <Hero />
       <About />
