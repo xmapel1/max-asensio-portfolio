@@ -5,17 +5,27 @@ import { useScrollState } from "@/components/ScrollProvider";
 import {
   SECTION_Z_RANGES,
   type SectionKey,
+  getDynamicCameraEndZ,
+  getDynamicGalleryEndZ,
   zRangeToProgressRange,
+  zRangeToProgressRangeWithCameraEnd,
 } from "@/components/scene/sceneConfig";
 
 export function useSectionProgress(section: SectionKey): {
   entryProgress: MotionValue<number>;
   exitProgress: MotionValue<number>;
 } {
-  const { scrollProgressMv } = useScrollState();
+  const { scrollProgressMv, galleryPlaneCount } = useScrollState();
 
   const zone = SECTION_Z_RANGES[section];
-  const range = zRangeToProgressRange(zone.start, zone.end);
+  const range =
+    section === "gallery"
+      ? zRangeToProgressRangeWithCameraEnd(
+          zone.start,
+          getDynamicGalleryEndZ(galleryPlaneCount),
+          getDynamicCameraEndZ(galleryPlaneCount),
+        )
+      : zRangeToProgressRange(zone.start, zone.end);
   const midpoint = (range.start + range.end) / 2;
 
   const entrySpan = midpoint - range.start || 1;

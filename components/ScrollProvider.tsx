@@ -7,13 +7,16 @@ import {
   GALLERY_FADE_SWEETSPOT_OFFSET_Z,
   GALLERY_MESH_ENTRY_OFFSET_Z,
   SECTION_Z_RANGES,
-  progressToCameraZ,
+  getDynamicCameraEndZ,
+  getDynamicGalleryEndZ,
+  progressToCameraZWithEnd,
 } from "@/components/scene/sceneConfig";
 
 export type ScrollContextValue = {
   scrollProgressMv: MotionValue<number>;
   cameraZMv: MotionValue<number>;
   scrollVelocityMv: MotionValue<number>;
+  galleryPlaneCount: number;
 };
 
 const ScrollContext = createContext<ScrollContextValue | null>(null);
@@ -79,9 +82,10 @@ export function ScrollProvider({
       if (galleryPlaneCount <= 0) return;
 
       const cameraZ = currentCameraZRef.current;
+      const galleryEndZ = getDynamicGalleryEndZ(galleryPlaneCount);
       const isInGalleryRange =
         cameraZ >= SECTION_Z_RANGES.gallery.start &&
-        cameraZ <= SECTION_Z_RANGES.gallery.end;
+        cameraZ <= galleryEndZ;
       if (!isInGalleryRange) return;
 
       const sweetspotStartZ =
@@ -128,7 +132,10 @@ export function ScrollProvider({
       if (Math.abs(nextVelocity - scrollVelocityMv.get()) > 0.0001) {
         scrollVelocityMv.set(nextVelocity);
       }
-      targetCameraZRef.current = progressToCameraZ(nextProgress);
+      targetCameraZRef.current = progressToCameraZWithEnd(
+        nextProgress,
+        getDynamicCameraEndZ(galleryPlaneCount),
+      );
       startFrame();
 
       if (velocityResetTimerRef.current !== null) {
@@ -167,8 +174,8 @@ export function ScrollProvider({
   }, [cameraZMv, galleryPlaneCount, scrollProgressMv, scrollVelocityMv]);
 
   const value = useMemo(
-    () => ({ scrollProgressMv, cameraZMv, scrollVelocityMv }),
-    [cameraZMv, scrollProgressMv, scrollVelocityMv],
+    () => ({ scrollProgressMv, cameraZMv, scrollVelocityMv, galleryPlaneCount }),
+    [cameraZMv, galleryPlaneCount, scrollProgressMv, scrollVelocityMv],
   );
 
   return (

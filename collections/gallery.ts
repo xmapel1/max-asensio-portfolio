@@ -7,6 +7,16 @@ export const Gallery: CollectionConfig = {
   fields: [
     { name: "title", type: "text", required: true },
     { name: "image", type: "upload", relationTo: "media", required: true },
+    {
+      name: "orientation",
+      type: "select",
+      options: [
+        { label: "Vertical", value: "vertical" },
+        { label: "Horizontal", value: "horizontal" },
+      ],
+      defaultValue: "vertical",
+      required: true,
+    },
     { name: "order", type: "number" },
     { name: "xOffset", type: "number", defaultValue: 0 },
     {

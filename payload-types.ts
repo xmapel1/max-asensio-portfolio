@@ -183,6 +183,7 @@ export interface Gallery {
   id: number;
   title: string;
   image: number | Media;
+  orientation: 'vertical' | 'horizontal';
   order?: number | null;
   xOffset?: number | null;
   mood?: {
@@ -345,6 +346,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface GallerySelect<T extends boolean = true> {
   title?: T;
   image?: T;
+  orientation?: T;
   order?: T;
   xOffset?: T;
   mood?:

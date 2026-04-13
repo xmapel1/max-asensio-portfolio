@@ -12,6 +12,7 @@ import {
   GALLERY_FADE_SWEETSPOT_OFFSET_Z,
   GALLERY_MESH_ENTRY_OFFSET_Z,
   SECTION_Z_RANGES,
+  getDynamicGalleryEndZ,
 } from "@/components/scene/sceneConfig";
 import { PLANE_GAP } from "@/hooks/useGalleryScroll";
 import type { Gallery } from "@/payload-types";
@@ -75,13 +76,10 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
     const currentItem = items[currentIndex];
     const nextItem = items[clampedNextIndex];
     const isBeforeFirstPlane = cameraZ < galleryStartZ;
-    const lastPlaneZ =
-      SECTION_Z_RANGES.gallery.start +
-      GALLERY_MESH_ENTRY_OFFSET_Z +
-      (planeCount - 1) * PLANE_GAP;
+    const galleryEndZ = getDynamicGalleryEndZ(planeCount);
     const rawOpacity = Math.min(
       (cameraZ - SECTION_Z_RANGES.gallery.start) / GALLERY_BG_FADE_WINDOW,
-      (lastPlaneZ + GALLERY_BG_FADE_WINDOW - cameraZ) / GALLERY_BG_FADE_WINDOW,
+      (galleryEndZ + GALLERY_BG_FADE_WINDOW - cameraZ) / GALLERY_BG_FADE_WINDOW,
     );
     const opacity = MathUtils.clamp(rawOpacity, 0, 1);
 
@@ -129,7 +127,7 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
         const aspect = width / height;
         const planeHeight = 2.2;
         const planeWidth = planeHeight * aspect;
-        const x = index % 2 === 0 ? -1.2 : 1.2;
+        const x = index % 2 === 0 ? -1.0 : 1.0;
 
         return (
           <mesh
