@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -7,6 +7,12 @@ const funeraksDemo = localFont({
   src: "../fonts/Funeraks-j6e9.ttf",
   display: "swap",
   variable: "--font-funeraks-demo",
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  weight: "400",
+  subsets: ["latin"],
 });
 
 const geistSans = Geist({
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${funeraksDemo.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${funeraksDemo.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-black text-white">
         <main>{children}</main>

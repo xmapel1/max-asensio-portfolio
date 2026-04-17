@@ -12,7 +12,7 @@ export const SECTION_Z_RANGES = {
   hero: { start: -100, end: -80 },
   about: { start: -80, end: -55 },
   projects: { start: -55, end: -30 },
-  gallery: { start: -30, end: 0 },
+  gallery: { start: 0, end: 50 },
 } as const;
 
 export type SectionKey = keyof typeof SECTION_Z_RANGES;
@@ -67,13 +67,18 @@ export function zRangeToProgressRangeWithCameraEnd(
 }
 
 export function getDynamicGalleryEndZ(galleryPlaneCount: number) {
-  const firstPlaneZ = SECTION_Z_RANGES.gallery.start + GALLERY_MESH_ENTRY_OFFSET_Z;
+  const firstPlaneZ =
+    SECTION_Z_RANGES.gallery.start + GALLERY_MESH_ENTRY_OFFSET_Z;
   const defaultReachablePlaneCount = Math.max(
-    Math.floor((SECTION_Z_RANGES.gallery.end - firstPlaneZ) / GALLERY_PLANE_GAP) +
-      1,
+    Math.floor(
+      (SECTION_Z_RANGES.gallery.end - firstPlaneZ) / GALLERY_PLANE_GAP,
+    ) + 1,
     1,
   );
-  const extraPlanes = Math.max(galleryPlaneCount - defaultReachablePlaneCount, 0);
+  const extraPlanes = Math.max(
+    galleryPlaneCount - defaultReachablePlaneCount,
+    0,
+  );
 
   return SECTION_Z_RANGES.gallery.end + extraPlanes * GALLERY_PLANE_GAP;
 }

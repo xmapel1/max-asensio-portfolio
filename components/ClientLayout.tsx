@@ -7,19 +7,20 @@ import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import SceneCanvas from "@/components/scene/SceneCanvas";
 import { SCROLL_DISTANCE_PX } from "@/components/scene/sceneConfig";
-import type { Gallery as GalleryDoc } from "@/payload-types";
+import type { Gallery as GalleryDoc, Project as ProjectDoc } from "@/payload-types";
 
 type ClientLayoutProps = {
   galleryItems: GalleryDoc[];
+  projectItems: ProjectDoc[];
 };
 
-export default function ClientLayout({ galleryItems }: ClientLayoutProps) {
+export default function ClientLayout({ galleryItems, projectItems }: ClientLayoutProps) {
   return (
     <ScrollProvider galleryPlaneCount={galleryItems.length}>
       <SceneCanvas galleryItems={galleryItems} />
       <Hero />
       <About />
-      <Projects />
+      <Projects projectItems={projectItems} />
       <Gallery />
       <div
         aria-hidden="true"
