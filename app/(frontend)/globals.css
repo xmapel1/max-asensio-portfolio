@@ -5,12 +5,13 @@
   --foreground: #ffffff;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-funeraks-demo: var(--font-funeraks-demo);
+  --font-bebas-neue: var(--font-bebas-neue);
 }
 
 @media (prefers-color-scheme: dark) {
