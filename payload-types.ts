@@ -150,7 +150,6 @@ export interface Project {
       }[]
     | null;
   thumbnail?: (number | null) | Media;
-  link?: string | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -315,7 +314,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   thumbnail?: T;
-  link?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

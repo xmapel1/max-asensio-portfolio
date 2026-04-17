@@ -23,10 +23,6 @@ export const Projects: CollectionConfig = {
       relationTo: "media",
     },
     {
-      name: "link",
-      type: "text", // GitHub repo
-    },
-    {
       name: "order",
       type: "number", //  scroll order control
     },
