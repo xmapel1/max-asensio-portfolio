@@ -23,6 +23,11 @@ export const Projects: CollectionConfig = {
       relationTo: "media",
     },
     {
+      name: "video",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "order",
       type: "number", //  scroll order control
     },

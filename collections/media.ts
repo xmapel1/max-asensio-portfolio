@@ -6,7 +6,9 @@ export const Media: CollectionConfig = {
     read: () => true,
     create: () => true,
   },
-  upload: true,
+  upload: {
+  mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm'],
+  },
   fields: [
     {
       name: "caption",

@@ -24,7 +24,7 @@ export default function ClientLayout({ galleryItems, projectItems }: ClientLayou
       <Gallery />
       <div
         aria-hidden="true"
-        className="relative z-20"
+        className="pointer-events-none relative z-20"
         style={{ height: `calc(100vh + ${SCROLL_DISTANCE_PX}px)` }}
       />
     </ScrollProvider>

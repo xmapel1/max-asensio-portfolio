@@ -21,9 +21,9 @@ function Hero() {
         <h1 className="font-funeraks-demo text-[clamp(3rem,10vw,9rem)] leading-[0.9] text-white">
           Max Asensio
         </h1>
-        <h2 className="font-mono text-[clamp(1rem,2vw,2rem)] uppercase tracking-[0.18em] text-white/60">
-          Fullstack | XR dev
-        </h2>
+        <h2 className="font-bebas-neue text-[clamp(1.5rem,2.5vw,2.5rem)] tracking-[0.12em] text-white/50">
+          Fullstack / XR dev
+      </h2>
       </motion.div>
     </section>
   );

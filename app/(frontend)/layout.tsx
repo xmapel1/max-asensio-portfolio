@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -25,6 +25,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Max Asensio",
   description: "Max Asensio's personal website",
@@ -38,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${funeraksDemo.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${funeraksDemo.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-black text-white">
         <main>{children}</main>
