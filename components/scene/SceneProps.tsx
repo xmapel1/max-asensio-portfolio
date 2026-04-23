@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import CredentialPlanes from "@/components/scene/CredentialPlanes";
 import GalleryBackground, {
   type MoodColors,
 } from "@/components/scene/GalleryBackground";
@@ -37,6 +38,7 @@ export default function SceneProps({ galleryItems }: ScenePropsProps) {
 
   return (
     <Suspense fallback={null}>
+      <CredentialPlanes />
       <GalleryBackground
         currentMood={backgroundState.currentMood}
         nextMood={backgroundState.nextMood}
