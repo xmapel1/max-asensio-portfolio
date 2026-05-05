@@ -18,8 +18,8 @@ function Hero() {
         style={{ scale, opacity, willChange: "transform, opacity" }}
         className="transform-gpu"
       >
-        <h1 className="font-funeraks-demo text-[clamp(3rem,10vw,9rem)] leading-[0.9] text-white">
-          Max Asensio
+        <h1 className="font-shatoze text-[clamp(6rem,14vw,16rem)] leading-[0.9] text-white">
+          mAX aSENsiO
         </h1>
         <h2 className="font-bebas-neue text-[clamp(1.5rem,2.5vw,2.5rem)] tracking-[0.12em] text-white/50">
           Fullstack / XR dev

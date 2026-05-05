@@ -19,7 +19,7 @@ import type { Gallery } from "@/payload-types";
 
 const FADE_SMOOTHING = 0.14;
 const ENTRY_MOOD: MoodColors = {
-  background: "#5f81ab",
+  background: "#050e08",
   blob1: "#f88b8d",
   blob2: "#cfbbdd",
 };
@@ -87,14 +87,14 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
       currentMood: isBeforeFirstPlane
         ? ENTRY_MOOD
         : {
-            background: currentItem.mood?.background ?? "#000000",
+            background: currentItem.mood?.background ?? "#050e08",
             blob1: currentItem.mood?.blob1 ?? "#000000",
             blob2: currentItem.mood?.blob2 ?? "#000000",
           },
       nextMood: isBeforeFirstPlane
         ? ENTRY_MOOD
         : {
-            background: nextItem.mood?.background ?? "#000000",
+            background: nextItem.mood?.background ?? "#050e08",
             blob1: nextItem.mood?.blob1 ?? "#000000",
             blob2: nextItem.mood?.blob2 ?? "#000000",
           },
