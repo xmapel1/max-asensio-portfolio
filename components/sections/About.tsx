@@ -4,7 +4,7 @@ import { motion, useTransform } from "motion/react";
 import { useSectionProgress } from "@/hooks/useSectionProgress";
 import { PARALLAX } from "@/components/scene/sceneConfig";
 
-const interests = ["Cinematic art", "Climbing / Hiking", "Films", "Music"];
+const interests = ["Cinematic art", "Climbing", "Outdoors", "Films", "Music"];
 
 const techStack = [
   "TypeScript",
@@ -46,7 +46,7 @@ function About() {
         className="transform-gpu w-full max-w-[900px] rounded-lg border border-white/10 bg-[rgba(10,10,10,0.85)] p-[clamp(2rem,5vw,4rem)] backdrop-blur-lg"
       >
         <p className="mb-4 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/40">
-          About
+          Hey! I&apos;m Max.
         </p>
 
         <p className="max-w-[70ch] text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] text-white/90">

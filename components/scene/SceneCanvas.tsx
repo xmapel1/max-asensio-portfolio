@@ -37,7 +37,7 @@ export default function SceneCanvas({ galleryItems }: SceneCanvasProps) {
         gl={{ antialias: true }}
         dpr={[1, 1.5]}
       >
-        <color attach="background" args={["#000000"]} />
+        <color attach="background" args={["#050e08"]} />
         <ambientLight intensity={0.6} />
         <CameraRig />
         <SceneProps galleryItems={galleryItems} />

@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import CredentialPlanes from "@/components/scene/CredentialPlanes";
+import FloatingParticles from "@/components/scene/FloatingParticles";
 import GalleryBackground, {
   type MoodColors,
 } from "@/components/scene/GalleryBackground";
@@ -22,12 +23,12 @@ export default function SceneProps({ galleryItems }: ScenePropsProps) {
     opacity: number;
   }>({
     currentMood: {
-      background: firstMood?.background ?? "#5f81ab",
+      background: firstMood?.background ?? "#050e08",
       blob1: firstMood?.blob1 ?? "#f88b8d",
       blob2: firstMood?.blob2 ?? "#cfbbdd",
     },
     nextMood: {
-      background: firstMood?.background ?? "#5f81ab",
+      background: firstMood?.background ?? "#050e08",
       blob1: firstMood?.blob1 ?? "#f88b8d",
       blob2: firstMood?.blob2 ?? "#cfbbdd",
     },
@@ -38,6 +39,7 @@ export default function SceneProps({ galleryItems }: ScenePropsProps) {
 
   return (
     <Suspense fallback={null}>
+      <FloatingParticles />
       <CredentialPlanes />
       <GalleryBackground
         currentMood={backgroundState.currentMood}

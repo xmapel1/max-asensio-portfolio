@@ -9,6 +9,12 @@ const funeraksDemo = localFont({
   variable: "--font-funeraks-demo",
 });
 
+const shatoze = localFont({
+  src: "../fonts/Shatoze.ttf",
+  display: "swap",
+  variable: "--font-shatoze",
+});
+
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
   weight: "400",
@@ -43,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${funeraksDemo.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${funeraksDemo.variable} ${shatoze.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-black text-white">
         <main>{children}</main>
