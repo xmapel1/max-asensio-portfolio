@@ -4,21 +4,22 @@ import { useEffect, useState } from "react";
 import { useMotionValueEvent } from "motion/react";
 import { useScrollState } from "@/components/ScrollProvider";
 import {
+  CAMERA_END_Z,
+  GALLERY_PLANE_GAP,
   SECTION_Z_RANGES,
   clamp01,
-  zRangeToProgressRange,
+  zRangeToProgressRangeWithCameraEnd,
 } from "@/components/scene/sceneConfig";
-
-export const PLANE_GAP = 4;
 
 export function useGalleryScroll(planeCount: number) {
   const { scrollProgressMv } = useScrollState();
   const [localProgress, setLocalProgress] = useState(0);
   const [cameraZOffset, setCameraZOffset] = useState(0);
 
-  const galleryRange = zRangeToProgressRange(
+  const galleryRange = zRangeToProgressRangeWithCameraEnd(
     SECTION_Z_RANGES.gallery.start,
     SECTION_Z_RANGES.gallery.end,
+    CAMERA_END_Z,
   );
   const rangeSpan = galleryRange.end - galleryRange.start || 1;
 
@@ -27,7 +28,9 @@ export function useGalleryScroll(planeCount: number) {
       (progress - galleryRange.start) / rangeSpan,
     );
     setLocalProgress(nextLocalProgress);
-    setCameraZOffset(nextLocalProgress * Math.max(planeCount - 1, 0) * PLANE_GAP);
+    setCameraZOffset(
+      nextLocalProgress * Math.max(planeCount - 1, 0) * GALLERY_PLANE_GAP,
+    );
   };
 
   useEffect(() => {

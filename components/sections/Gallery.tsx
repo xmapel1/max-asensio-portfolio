@@ -44,17 +44,13 @@ function Gallery() {
     >
       <motion.div
         style={{ scale, opacity, willChange: "transform, opacity" }}
-        className="transform-gpu w-full max-w-xl rounded-xl border border-white/10 bg-white/3 p-8 backdrop-blur-sm"
+        className="transform-gpu w-full max-w-4xl rounded-xl border border-white/10 bg-white/3 p-8 backdrop-blur-sm text-center"
       >
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-white/50">
-          Gallery
-        </p>
-        <h2 className="text-4xl font-semibold text-white">
+        <h2 className="text-[clamp(4rem,10vw,8rem)] font-shatoze text-white">
           Visual Experiments
         </h2>
-        <p className="mt-3 text-white/70">
-          Placeholder gallery content for stills, motion, and interactive
-          snippets.
+        <p className="font-bebas-neue text-[clamp(1.5rem,2.5vw,2.5rem)] mt-3 text-white/70">
+          Please enjoy this interactive gallery of some of my photography work.
         </p>
       </motion.div>
     </section>

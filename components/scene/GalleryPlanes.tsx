@@ -11,10 +11,10 @@ import {
   GALLERY_BG_FADE_WINDOW,
   GALLERY_FADE_SWEETSPOT_OFFSET_Z,
   GALLERY_MESH_ENTRY_OFFSET_Z,
+  GALLERY_PLANE_GAP,
   SECTION_Z_RANGES,
   getDynamicGalleryEndZ,
 } from "@/components/scene/sceneConfig";
-import { PLANE_GAP } from "@/hooks/useGalleryScroll";
 import type { Gallery } from "@/payload-types";
 
 const FADE_SMOOTHING = 0.14;
@@ -55,12 +55,13 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
     const galleryStartZ =
       SECTION_Z_RANGES.gallery.start + GALLERY_MESH_ENTRY_OFFSET_Z;
     const fadeSweetspotStartZ = galleryStartZ + GALLERY_FADE_SWEETSPOT_OFFSET_Z;
-    const rawIndex = (cameraZ - fadeSweetspotStartZ) / PLANE_GAP;
+    const rawIndex = (cameraZ - fadeSweetspotStartZ) / GALLERY_PLANE_GAP;
     const currentIndex = Math.min(
       Math.max(Math.round(rawIndex), 0),
       planeCount - 1,
     );
-    const currentSweetspotZ = fadeSweetspotStartZ + currentIndex * PLANE_GAP;
+    const currentSweetspotZ =
+      fadeSweetspotStartZ + currentIndex * GALLERY_PLANE_GAP;
     const movingTowardPositiveZ = cameraZ >= currentSweetspotZ;
     const nextIndex = movingTowardPositiveZ
       ? Math.min(currentIndex + 1, planeCount - 1)
@@ -71,7 +72,7 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
     const isAtLastPlane = currentIndex === planeCount - 1;
     const blend = isAtLastPlane
       ? 0
-      : Math.min(Math.max(directionalDistance / PLANE_GAP, 0), 1);
+      : Math.min(Math.max(directionalDistance / GALLERY_PLANE_GAP, 0), 1);
     const clampedNextIndex = Math.min(currentIndex + 1, planeCount - 1);
     const currentItem = items[currentIndex];
     const nextItem = items[clampedNextIndex];
@@ -137,7 +138,7 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
               0,
               SECTION_Z_RANGES.gallery.start +
                 GALLERY_MESH_ENTRY_OFFSET_Z +
-                index * PLANE_GAP,
+                index * GALLERY_PLANE_GAP,
             ]}
           >
             <planeGeometry args={[planeWidth, planeHeight]} />

@@ -1,5 +1,5 @@
 export const CAMERA_START_Z = -100;
-export const CAMERA_END_Z = 10;
+export const CAMERA_END_Z = 100;
 export const GALLERY_PLANE_GAP = 6;
 
 export const SCROLL_DISTANCE_PX = 8000;
@@ -9,10 +9,11 @@ export const GALLERY_BG_FADE_WINDOW = 8;
 export const GALLERY_COLOR_LERP = 0.05;
 
 export const SECTION_Z_RANGES = {
-  hero: { start: -100, end: -80 },
-  about: { start: -80, end: -55 },
-  projects: { start: -55, end: -30 },
-  gallery: { start: 0, end: 50 },
+  hero:     { start: -100, end: -80 },
+  about:    { start: -80,  end: -55 },
+  projects: { start: -55,  end: -30 },
+  contact:  { start: -30,  end: -10 },
+  gallery:  { start: 15,  end: 30  },
 } as const;
 
 export type SectionKey = keyof typeof SECTION_Z_RANGES;
@@ -30,25 +31,9 @@ export function clamp01(value: number) {
   return Math.min(Math.max(value, 0), 1);
 }
 
-export function progressToCameraZ(progress: number) {
-  const p = clamp01(progress);
-  return CAMERA_START_Z + (CAMERA_END_Z - CAMERA_START_Z) * p;
-}
-
 export function progressToCameraZWithEnd(progress: number, cameraEndZ: number) {
   const p = clamp01(progress);
   return CAMERA_START_Z + (cameraEndZ - CAMERA_START_Z) * p;
-}
-
-export function zRangeToProgressRange(startZ: number, endZ: number) {
-  const totalRange = CAMERA_END_Z - CAMERA_START_Z;
-  const start = (startZ - CAMERA_START_Z) / totalRange;
-  const end = (endZ - CAMERA_START_Z) / totalRange;
-
-  return {
-    start: clamp01(start),
-    end: clamp01(end),
-  };
 }
 
 export function zRangeToProgressRangeWithCameraEnd(
@@ -88,4 +73,11 @@ export function getDynamicCameraEndZ(galleryPlaneCount: number) {
     getDynamicGalleryEndZ(galleryPlaneCount) - SECTION_Z_RANGES.gallery.end;
 
   return CAMERA_END_Z + extraDistance;
+}
+
+export function getDynamicScrollDistancePx(galleryPlaneCount: number) {
+  const dynamicEndZ = getDynamicCameraEndZ(galleryPlaneCount);
+  const totalRange = dynamicEndZ - CAMERA_START_Z;
+  const baseRange = CAMERA_END_Z - CAMERA_START_Z;
+  return SCROLL_DISTANCE_PX * (totalRange / baseRange);
 }
