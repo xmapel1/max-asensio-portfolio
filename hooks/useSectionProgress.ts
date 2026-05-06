@@ -3,11 +3,11 @@
 import { useTransform, type MotionValue } from "motion/react";
 import { useScrollState } from "@/components/ScrollProvider";
 import {
+  CAMERA_END_Z,
   SECTION_Z_RANGES,
   type SectionKey,
   getDynamicCameraEndZ,
   getDynamicGalleryEndZ,
-  zRangeToProgressRange,
   zRangeToProgressRangeWithCameraEnd,
 } from "@/components/scene/sceneConfig";
 
@@ -25,7 +25,7 @@ export function useSectionProgress(section: SectionKey): {
           getDynamicGalleryEndZ(galleryPlaneCount),
           getDynamicCameraEndZ(galleryPlaneCount),
         )
-      : zRangeToProgressRange(zone.start, zone.end);
+      : zRangeToProgressRangeWithCameraEnd(zone.start, zone.end, CAMERA_END_Z);
   const midpoint = (range.start + range.end) / 2;
 
   const entrySpan = midpoint - range.start || 1;

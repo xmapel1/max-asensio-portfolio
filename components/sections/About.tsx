@@ -49,14 +49,14 @@ function About() {
           Hey! I&apos;m Max.
         </p>
 
-        <p className="max-w-[70ch] text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] text-white/90">
+        <p className="max-w-[70ch] text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] text-white">
           I&apos;m a full-stack developer with a background in XR and immersive
           media. I transitioned from building VR/AR experiences to developing
           modern web applications, combining technical problem-solving with a
           strong eye for interactive design.
         </p>
 
-        <p className="max-w-[70ch] mt-6 text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] text-white/90">
+        <p className="max-w-[70ch] mt-6 text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] text-white">
           Today, I focus on building scalable, user-centered web applications
           using modern frameworks and clean design principles. My experience
           spans project management in XR production, full-stack development, and

@@ -8,7 +8,7 @@ import { SECTION_Z_RANGES } from "@/components/scene/sceneConfig";
 
 const ABOUT_CENTER_Z =
   (SECTION_Z_RANGES.about.start + SECTION_Z_RANGES.about.end) / 2;
-const CREDENTIAL_Z = -63.5;
+const CREDENTIAL_Z = -60;
 const FADE_RANGE = 16;
 const MAX_PLANE_OPACITY = 0.65;
 const FLOAT_AMPLITUDE = 0.12;
@@ -82,7 +82,7 @@ export default function CredentialPlanes() {
 
   return (
     <group>
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={1} />
       {textures.map((texture, index) => {
         const image = texture.image as { width?: number; height?: number } | undefined;
         const aspect = image?.width && image?.height ? image.width / image.height : 2;

@@ -6,6 +6,7 @@ import {
   CAMERA_START_Z,
   GALLERY_FADE_SWEETSPOT_OFFSET_Z,
   GALLERY_MESH_ENTRY_OFFSET_Z,
+  GALLERY_PLANE_GAP,
   SECTION_Z_RANGES,
   getDynamicCameraEndZ,
   getDynamicGalleryEndZ,
@@ -21,7 +22,6 @@ export type ScrollContextValue = {
 
 const ScrollContext = createContext<ScrollContextValue | null>(null);
 
-const GALLERY_PLANE_GAP = 4;
 const SNAP_CAPTURE_DISTANCE = GALLERY_PLANE_GAP * 0.2;
 const FIRST_SNAP_CAPTURE_DISTANCE = GALLERY_PLANE_GAP * 0.1;
 
