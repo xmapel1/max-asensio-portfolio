@@ -24,8 +24,8 @@ export default async function HomePage() {
 
   return (
     <ClientLayout
-      galleryItems={data.docs as GalleryDoc[]}
-      projectItems={projects.docs as ProjectDoc[]}
+      galleryItems={data.docs ?? []}
+      projectItems={projects.docs ?? []}
     />
   );
 }

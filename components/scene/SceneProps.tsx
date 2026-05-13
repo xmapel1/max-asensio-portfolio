@@ -14,7 +14,7 @@ type ScenePropsProps = {
 };
 
 export default function SceneProps({ galleryItems }: ScenePropsProps) {
-  const firstMood = galleryItems[0]?.mood;
+  const firstMood = galleryItems?.[0]?.mood;
   const [backgroundState, setBackgroundState] = useState<{
     currentMood: MoodColors;
     nextMood: MoodColors;

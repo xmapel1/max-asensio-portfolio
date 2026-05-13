@@ -35,11 +35,17 @@ type GalleryPlanesProps = {
   }) => void;
 };
 
-export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlanesProps) {
+export default function GalleryPlanes({
+  items = [],
+  onBackgroundChange,
+}: GalleryPlanesProps) {
   const materialsRef = useRef<Array<MeshBasicMaterial | null>>([]);
   const { scrollVelocityMv } = useScrollState();
   const urls = items.map((item) => {
-    const path = typeof item.image === "object" ? (item.image.url ?? "") : "";
+    const path =
+      typeof item.image === "object"
+        ? (item.image.sizes?.vertical?.url ?? item.image.url ?? "")
+        : "";
     if (!path) return "";
     return path.startsWith("http")
       ? path
@@ -122,9 +128,13 @@ export default function GalleryPlanes({ items, onBackgroundChange }: GalleryPlan
     <group>
       {items.map((item, index) => {
         const width =
-          typeof item.image === "object" ? (item.image.width ?? 800) : 800;
+          typeof item.image === "object"
+            ? (item.image.sizes?.vertical?.width ?? item.image.width ?? 800)
+            : 800;
         const height =
-          typeof item.image === "object" ? (item.image.height ?? 1000) : 1000;
+          typeof item.image === "object"
+            ? (item.image.sizes?.vertical?.height ?? item.image.height ?? 1000)
+            : 1000;
         const aspect = width / height;
         const planeHeight = 2.2;
         const planeWidth = planeHeight * aspect;

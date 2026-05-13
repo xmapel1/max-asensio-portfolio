@@ -7,7 +7,37 @@ export const Media: CollectionConfig = {
     create: () => true,
   },
   upload: {
-  mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm'],
+    formatOptions: {
+      format: "webp",
+      options: {
+        quality: 90,
+      },
+    },
+    imageSizes: [
+      {
+        name: "thumbnail",
+        width: 400,
+      },
+      {
+        name: "horizontal",
+        width: 1280,
+      },
+      {
+        name: "vertical",
+        width: 800,
+        height: 1000,
+      },
+    ],
+    mimeTypes: [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/gif",
+      "video/mp4",
+      "video/webm",
+    ],
+    resizeOptions: undefined,
+    focalPoint: true,
   },
   fields: [
     {
