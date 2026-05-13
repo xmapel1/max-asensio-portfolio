@@ -1,7 +1,12 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 import ClientLayout from "@/components/ClientLayout";
-import type { Gallery as GalleryDoc, Project as ProjectDoc } from "@/payload-types";
+import type {
+  Gallery as GalleryDoc,
+  Project as ProjectDoc,
+} from "@/payload-types";
+
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
