@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion, useTransform } from "motion/react";
 import Image from "next/image";
 import { useSectionProgress } from "@/hooks/useSectionProgress";
@@ -27,6 +27,8 @@ function Projects({ projectItems }: ProjectsProps) {
   const [openProjectId, setOpenProjectId] = useState<number | null>(null);
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const [drawerHeight, setDrawerHeight] = useState(0);
   const { entryProgress, exitProgress } = useSectionProgress("projects");
   const entryScale = useTransform(
     entryProgress,
@@ -174,7 +176,7 @@ function Projects({ projectItems }: ProjectsProps) {
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-black/55 to-transparent" />
 
                       <motion.div
-                        animate={{ y: isOpen ? -300 : 0 }}
+                        animate={{ y: isOpen ? -drawerHeight : 0 }}
                         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute inset-x-0 bottom-0 z-20 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-x-4 px-8 pb-4"
                       >
@@ -226,10 +228,16 @@ function Projects({ projectItems }: ProjectsProps) {
 
                       <motion.div
                         id={drawerId}
+                        ref={drawerRef}
                         initial={false}
                         animate={{
                           y: isOpen ? 0 : "100%",
                           opacity: isOpen ? 1 : 0,
+                        }}
+                        onUpdate={() => {
+                          if (drawerRef.current) {
+                            setDrawerHeight(drawerRef.current.offsetHeight);
+                          }
                         }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         style={{ position: "absolute" }}
