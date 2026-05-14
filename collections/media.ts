@@ -20,7 +20,7 @@ export const Media: CollectionConfig = {
       },
       {
         name: "horizontal",
-        width: 1280,
+        width: 1400,
       },
       {
         name: "vertical",
