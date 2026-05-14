@@ -4,7 +4,7 @@ import { motion, useTransform } from "motion/react";
 import { useSectionProgress } from "@/hooks/useSectionProgress";
 import { PARALLAX } from "@/components/scene/sceneConfig";
 
-const interests = ["Cinematic art", "Climbing", "Outdoors", "Films", "Music"];
+const interests = ["Cinematic Art", "Climbing", "Outdoors", "Films", "Music", "Games", "Manga", ];
 
 const techStack = [
   "TypeScript",

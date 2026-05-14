@@ -68,7 +68,7 @@ function Projects({ projectItems }: ProjectsProps) {
     activeProject?.video && typeof activeProject.video !== "number"
       ? (activeProject.video as Media)
       : null;
-  const imageUrl = thumbnail?.sizes?.thumbnail?.url ?? thumbnail?.url ?? null;
+  const imageUrl = thumbnail?.sizes?.horizontal?.url ?? thumbnail?.url ?? null;
   const videoUrl = videoMedia?.url ?? null;
   const tagList =
     activeProject?.tags
