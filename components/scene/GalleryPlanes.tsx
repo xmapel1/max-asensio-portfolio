@@ -35,22 +35,34 @@ type GalleryPlanesProps = {
   }) => void;
 };
 
+const serverBase = process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000";
+
+function resolveGalleryImage(item: Gallery): {
+  url: string;
+  width: number;
+  height: number;
+} {
+  if (typeof item.image !== "object") {
+    return { url: "", width: 800, height: 1000 };
+  }
+  const img = item.image;
+  const horizontal = item.orientation === "horizontal";
+  const variant = horizontal ? img.sizes?.horizontal : img.sizes?.vertical;
+  const path = variant?.url ?? img.url ?? "";
+  const url =
+    !path ? "" : path.startsWith("http") ? path : `${serverBase}${path}`;
+  const width = variant?.width ?? img.width ?? (horizontal ? 1400 : 800);
+  const height = variant?.height ?? img.height ?? 1000;
+  return { url, width, height };
+}
+
 export default function GalleryPlanes({
   items = [],
   onBackgroundChange,
 }: GalleryPlanesProps) {
   const materialsRef = useRef<Array<MeshBasicMaterial | null>>([]);
   const { scrollVelocityMv } = useScrollState();
-  const urls = items.map((item) => {
-    const path =
-      typeof item.image === "object"
-        ? (item.image.sizes?.vertical?.url ?? item.image.url ?? "")
-        : "";
-    if (!path) return "";
-    return path.startsWith("http")
-      ? path
-      : `${process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000"}${path}`;
-  });
+  const urls = items.map((item) => resolveGalleryImage(item).url);
   const textures = useTexture(urls);
 
   useFrame((state) => {
@@ -127,14 +139,7 @@ export default function GalleryPlanes({
   return (
     <group>
       {items.map((item, index) => {
-        const width =
-          typeof item.image === "object"
-            ? (item.image.sizes?.vertical?.width ?? item.image.width ?? 800)
-            : 800;
-        const height =
-          typeof item.image === "object"
-            ? (item.image.sizes?.vertical?.height ?? item.image.height ?? 1000)
-            : 1000;
+        const { width, height } = resolveGalleryImage(item);
         const aspect = width / height;
         const planeHeight = 2.2;
         const planeWidth = planeHeight * aspect;
